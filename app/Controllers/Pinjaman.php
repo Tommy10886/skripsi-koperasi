@@ -105,11 +105,11 @@ class Pinjaman extends BaseController
         $nama_ttd = $nama1.$random;
         $nama_ttd2 = $nama2.$random;
         if ($this->isValidBase64Image($this->request->getPost('ttd1'))) {
-            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../assets/images/ttd/ttd_{$nama_ttd}.png");
+            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../public/assets/images/ttd/ttd_{$nama_ttd}.png");
             $data['ttd_pemohon'] = 'ttd_' . $nama1 . $random . '.png';
         }     
         if ($this->isValidBase64Image($this->request->getPost('ttd2'))) {
-            $this->simpanTTD($this->request->getPost('ttd2'), WRITEPATH . "../assets/images/ttd/ttd_{$nama_ttd2}.png");
+            $this->simpanTTD($this->request->getPost('ttd2'), WRITEPATH . "../public/assets/images/ttd/ttd_{$nama_ttd2}.png");
             $data['ttd_pasangan'] = 'ttd_' . $nama2 . $random . '.png';
         }
 
@@ -165,11 +165,11 @@ class Pinjaman extends BaseController
         $nama_ttd = $nama1.$random;
         $nama_ttd2 = $nama2.$random;
         if ($this->isValidBase64Image($this->request->getPost('ttd1'))) {
-            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../assets/images/ttd/ttd_{$nama_ttd}.png");
+            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../public/assets/images/ttd/ttd_{$nama_ttd}.png");
             $data['ttd_pemohon'] = 'ttd_' . $nama1 . $random . '.png';
         }     
         if ($this->isValidBase64Image($this->request->getPost('ttd2'))) {
-            $this->simpanTTD($this->request->getPost('ttd2'), WRITEPATH . "../assets/images/ttd/ttd_{$nama_ttd2}.png");
+            $this->simpanTTD($this->request->getPost('ttd2'), WRITEPATH . "../public/assets/images/ttd/ttd_{$nama_ttd2}.png");
             $data['ttd_pasangan'] = 'ttd_' . $nama2 . $random . '.png';
         }
         $update = $this->pinjamanModel->update_data($data,$id);
@@ -227,15 +227,15 @@ class Pinjaman extends BaseController
     public function cetak($id)
     {           
         $row = $this->pinjamanModel->get_by_id($id);
-        $ttd1 = base64_encode(file_get_contents('assets/images/ttd/'.$row['ttd_pemohon']));
-        $ttd2 = base64_encode(file_get_contents('assets/images/ttd/'.$row['ttd_pasangan']));
+        $ttd1 = base64_encode(file_get_contents('public/assets/images/ttd/'.$row['ttd_pemohon']));
+        $ttd2 = base64_encode(file_get_contents('public/assets/images/ttd/'.$row['ttd_pasangan']));
         $ketua = $this->penggunaModel->struktur(1);
         $sekretaris = $this->penggunaModel->struktur(2);
         $bendahara = $this->penggunaModel->struktur(3);
         
-        $ttd_k = base64_encode(file_get_contents('assets/images/ttd/'.$ketua[0]['ttd']));
-        $ttd_s = base64_encode(file_get_contents('assets/images/ttd/'.$sekretaris[0]['ttd']));
-        $ttd_b = base64_encode(file_get_contents('assets/images/ttd/'.$bendahara[0]['ttd']));
+        $ttd_k = base64_encode(file_get_contents('public/assets/images/ttd/'.$ketua[0]['ttd']));
+        $ttd_s = base64_encode(file_get_contents('public/assets/images/ttd/'.$sekretaris[0]['ttd']));
+        $ttd_b = base64_encode(file_get_contents('public/assets/images/ttd/'.$bendahara[0]['ttd']));
         $data =[
             'data' => $row,
             'ttd1' => $ttd1,

@@ -72,7 +72,7 @@ class Pengguna extends BaseController
         $random = $this->randomString(10);
          $nama_ttd = $nama1.$random;
         if ($this->isValidBase64Image($this->request->getPost('ttd1'))) {
-            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../assets/images/ttd/ttd_{$nama_ttd}.png");
+            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../public/assets/images/ttd/ttd_{$nama_ttd}.png");
             $data['ttd'] = 'ttd_' . $nama1 . $random . '.png';
         }     
         $tambah = $this->penggunaModel->create_data($data);
@@ -139,7 +139,7 @@ class Pengguna extends BaseController
         $random = $this->randomString(10);
          $nama_ttd = $nama1.$random;
         if ($this->isValidBase64Image($this->request->getPost('ttd1'))) {
-            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../assets/images/ttd/ttd_{$nama_ttd}.png");
+            $this->simpanTTD($this->request->getPost('ttd1'), WRITEPATH . "../public/assets/images/ttd/ttd_{$nama_ttd}.png");
             $data['ttd'] = 'ttd_' . $nama1 . $random . '.png';
         }     
         $ubah = $this->penggunaModel->update_data($data,$id);
